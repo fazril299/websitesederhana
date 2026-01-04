@@ -12,7 +12,15 @@
     
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
+
 <body>
+
+    <div id="intro-screen">
+        <h1 class="intro-text">Welcome to my Portfolio</h1>
+        <button id="start-btn">
+    <span>Mulai Jelajahi</span> <i class="fa-solid fa-rocket"></i>
+</button>
+    </div>
 
     <header class="navbar">
         <a href="index.html" class="brand-logo" data-aos="fade-down">Shinichi</a>
@@ -21,7 +29,7 @@
             <a href="index.html">Home</a>
             <a href="#skills">Soft Skills</a>
             <a href="https://github.com/fazril299" target="_blank" rel="noopener noreferrer">
-            <i class="fa-brands fa-github"></i> Github
+                <i class="fa-brands fa-github"></i> Github
             </a>
         </nav>
         
@@ -89,7 +97,44 @@
                 <h3>Adaptability</h3>
                 <p>Cepat beradaptasi kalo lagi niat.</p>
             </div>
-        </div> </section>
+        </div>
+    </section>
+
+    <section id="tech-stack" class="tech-section">
+        <h2 class="section-title" data-aos="fade-up">My <span class="text-purple">Tools</span></h2>
+        
+        <div class="tech-container">
+            <div class="tech-card" data-aos="zoom-in" data-aos-delay="100">
+                <i class="fa-brands fa-html5 html-icon"></i>
+                <p>HTML</p>
+            </div>
+
+            <div class="tech-card" data-aos="zoom-in" data-aos-delay="200">
+                <i class="fa-brands fa-css3-alt css-icon"></i>
+                <p>CSS</p>
+            </div>
+
+            <div class="tech-card" data-aos="zoom-in" data-aos-delay="300">
+                <i class="fa-brands fa-js js-icon"></i>
+                <p>JavaScript</p>
+            </div>
+
+            <div class="tech-card" data-aos="zoom-in" data-aos-delay="400">
+                <i class="fa-brands fa-git-alt git-icon"></i>
+                <p>Git</p>
+            </div>
+
+            <div class="tech-card" data-aos="zoom-in" data-aos-delay="500">
+                <i class="fa-brands fa-github github-icon"></i>
+                <p>Github</p>
+            </div>
+            
+            <div class="tech-card" data-aos="zoom-in" data-aos-delay="600">
+                <i class="fa-brands fa-python python-icon"></i>
+                <p>Python</p>
+            </div>
+        </div>
+    </section>
 
     <div id="cursor-glow"></div>
 
@@ -98,10 +143,22 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            AOS.init({ 
-                once: true, duration: 800, offset: 100 
-            });
+            
+            // --- A. INTRO SCREEN (KLIK TOMBOL) ---
+            const intro = document.getElementById('intro-screen');
+            const startBtn = document.getElementById('start-btn');
+            
+            if (startBtn && intro) {
+                startBtn.addEventListener('click', () => {
+                    // Tombol ditekan -> Tirai Naik
+                    intro.classList.add('slide-up');
+                });
+            }
 
+            // --- B. AOS ANIMATION ---
+            AOS.init({ once: true, duration: 800, offset: 100 });
+
+            // --- C. CURSOR GLOW ---
             const glow = document.getElementById('cursor-glow');
             if (glow) {
                 document.addEventListener('mousemove', (e) => {
