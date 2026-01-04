@@ -4,7 +4,8 @@
     --primary-color: #a855f7;     
     --text-color: #cccccc;        
     --white: #ffffff;
-    --card-bg: #111111;
+    backdrop-filter: blur(10px);
+    
 }
 
 * {
