@@ -208,17 +208,15 @@ spline-viewer {
     z-index: 15; 
 }
 
-/* EFEK SAAT MOUSE MASUK (HOVER) */
 .skill-card:hover {
-    transform: translateY(-10px); /* Naik ke atas */
+    transform: translateY(-10px);
     
-    /* Latar jadi agak lebih terang sedikit */
+
     background: rgba(168, 85, 247, 0.1); 
     
-    /* Border jadi Ungu Neon */
+    
     border-color: #a855f7;
     
-    /* Efek Cahaya Pendar */
     box-shadow: 0 0 20px rgba(168, 85, 247, 0.4); 
 }
 #cursor-glow {
