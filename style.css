@@ -4,7 +4,7 @@
     --primary-color: #a855f7;     
     --text-color: #cccccc;        
     --white: #ffffff;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(1px);
     
 }
 
@@ -191,26 +191,35 @@ spline-viewer {
 }
 
 .skill-card {
-    background: var(--card-bg);
+    /* HAPUS background #111 yang lama */
+    /* GANTI DENGAN EFEK KACA INI: */
+    background: rgba(255, 255, 255, 0.03); /* Transparan banget */
+    backdrop-filter: blur(10px);           /* Blur belakangnya */
+    -webkit-backdrop-filter: blur(10px);
+    
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Garis tipis */
     padding: 30px;
-    border-radius: 16px;
-    border: 1px solid #222;
+    border-radius: 15px;
+    
+    /* Biar transisi warnanya halus */
     transition: all 0.4s ease;
     
     position: relative;
     z-index: 15; 
 }
 
-.skill-card h3 {
-    color: var(--primary-color);
-    margin-bottom: 15px;
-    font-size: 1.4rem;
-}
-
+/* EFEK SAAT MOUSE MASUK (HOVER) */
 .skill-card:hover {
-    transform: translateY(-10px);
-    border-color: var(--primary-color);
-    box-shadow: 0 10px 30px rgba(168, 85, 247, 0.15);
+    transform: translateY(-10px); /* Naik ke atas */
+    
+    /* Latar jadi agak lebih terang sedikit */
+    background: rgba(168, 85, 247, 0.1); 
+    
+    /* Border jadi Ungu Neon */
+    border-color: #a855f7;
+    
+    /* Efek Cahaya Pendar */
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.4); 
 }
 #cursor-glow {
     position: fixed;
