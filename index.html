@@ -7,17 +7,22 @@
     <title>Shinichi | 3D Experience</title>
     
     <link rel="stylesheet" href="style.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
 
     <header class="navbar">
-        <a href="#" class="brand-logo" data-aos="fade-down">Shinichi</a>
+        <a href="index.html" class="brand-logo" data-aos="fade-down">Shinichi</a>
 
         <nav class="nav-links" data-aos="fade-down" data-aos-delay="200">
             <a href="index.html">Home</a>
             <a href="#skills">Soft Skills</a>
-            <a href="#">Contact</a>
+            <a href="https://github.com/fazril299" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-github"></i> Github
+            </a>
         </nav>
         
         <a href="#skills" class="btn-primary" data-aos="fade-down" data-aos-delay="400">
@@ -33,19 +38,19 @@
 
             <h1 class="hero-heading" data-aos="fade-up" data-aos-delay="100">
                 Email for us <br> 
-                <span class="highlight">zreal</span>
+                <span class="highlight">Zreal</span>
             </h1>
 
             <p class="hero-subtext" data-aos="fade-up" data-aos-delay="200">
-                Eksperimen membuat tampilan 3D interaktif menggunakan tutorial YouTube dan aset dari Spline.
+                Mencoba membuat website sederhana menggunakan gaya model 3D spline.
             </p>
 
             <div class="cta-group" data-aos="fade-up" data-aos-delay="300">
-                <a href="https://youtu.be/oskiEydAaok?si=Q5-wG5rryXXS4puF" target="_blank" class="btn-primary">
+                <a href="https://youtu.be/oskiEydAaok?si=Q5-wG5rryXXS4puF" target="_blank" rel="noopener noreferrer" class="btn-primary">
                     Tutorial 3D
                 </a>
-                <a href="https://app.spline.design/community" target="_blank" class="btn-outline">
-                    Aset Model
+                <a href="https://app.spline.design/community" target="_blank" rel="noopener noreferrer" class="btn-outline">
+                    Model 3D
                 </a>
             </div>
         </div>
@@ -62,51 +67,50 @@
         
         <div class="skills-container">
             <div class="skill-card" data-aos="flip-left" data-aos-delay="200">
+                <div class="icon-box">
+                    <i class="fa-solid fa-users"></i>
+                </div>
                 <h3>Teamwork</h3>
-                <p>Mampu berkolaborasi dalam tim dan terbiasa menggunakan Git untuk manajemen versi.</p>
+                <p>Bisa bekerja sama dalam tim dan berkolaborasi menggunakan Git.</p>
             </div>
 
             <div class="skill-card" data-aos="flip-left" data-aos-delay="300">
+                <div class="icon-box">
+                    <i class="fa-solid fa-brain"></i>
+                </div>
                 <h3>Problem Solving</h3>
-                <p>Menikmati proses mencari solusi logis untuk memecahkan bug atau error pada kode.</p>
+                <p>Suka mencari solusi logis untuk memecahkan bug atau error kode.</p>
             </div>
 
             <div class="skill-card" data-aos="flip-left" data-aos-delay="400">
+                <div class="icon-box">
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
                 <h3>Adaptability</h3>
-                <p>Cepat beradaptasi dengan teknologi baru jika ada kemauan dan tujuan yang jelas.</p>
+                <p>Cepat beradaptasi kalo lagi niat.</p>
             </div>
-        </div>
-    </section>
+        </div> </section>
 
     <div id="cursor-glow"></div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
     <script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.29/build/spline-viewer.js"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            
-            // 1. Inisialisasi AOS (Scroll Animations)
             AOS.init({ 
-                once: true,      // Animasi hanya jalan sekali saat scroll ke bawah
-                duration: 800,   // Durasi animasi dalam ms
-                offset: 100      // Trigger animasi 100px sebelum elemen muncul
+                once: true, duration: 800, offset: 100 
             });
 
-            // 2. Logic Efek Cahaya Mengikuti Mouse
             const glow = document.getElementById('cursor-glow');
-            
             if (glow) {
                 document.addEventListener('mousemove', (e) => {
-                    // Gunakan requestAnimationFrame agar gerakan lebih smooth & ringan
                     requestAnimationFrame(() => {
                         glow.style.left = `${e.clientX}px`;
                         glow.style.top = `${e.clientY}px`;
                     });
                 });
             }
-
         });
     </script>
 
