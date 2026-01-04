@@ -38,13 +38,9 @@ body {
     left: 0;
     width: 100%;
     z-index: 100; 
-    
-    
     background: rgba(5, 5, 5, 0.7); 
     backdrop-filter: blur(20px); 
     -webkit-backdrop-filter: blur(20px);
-    
-    
     border-bottom: 1px solid var(--primary-color); 
     box-shadow: 0 4px 30px rgba(168, 85, 247, 0.3);
 }
@@ -166,58 +162,104 @@ spline-viewer {
     background: transparent; 
     pointer-events: auto; 
 }
+/* =========================================
+   SKILLS SECTION (3D HOLOGRAM CARDS)
+   ========================================= */
 .skills-section {
     padding: 100px 5%;
     position: relative;
-    background: transparent;
     z-index: 10;
 }
 
-.section-title {
-    text-align: center;
-    font-size: 2.5rem;
-    color: var(--white);
-    margin-bottom: 50px;
-}
-
-.text-purple {
-    color: var(--primary-color);
-}
-
 .skills-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-top: 50px;
+    
+    /* PENTING: Membuat ruang 3D */
+    perspective: 1500px; 
 }
 
 .skill-card {
-    /* HAPUS background #111 yang lama */
-    /* GANTI DENGAN EFEK KACA INI: */
-    background: rgba(255, 255, 255, 0.03); /* Transparan banget */
-    backdrop-filter: blur(10px);           /* Blur belakangnya */
-    -webkit-backdrop-filter: blur(10px);
+    flex: 1;
+    min-width: 280px;
+    max-width: 350px;
+    padding: 40px 30px;
     
-    border: 1px solid rgba(255, 255, 255, 0.1); /* Garis tipis */
-    padding: 30px;
-    border-radius: 15px;
+    /* Efek Kaca Gelap */
+    background: rgba(20, 20, 20, 0.6); 
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    text-align: center;
     
-    /* Biar transisi warnanya halus */
-    transition: all 0.4s ease;
-    
-    position: relative;
-    z-index: 15; 
+    /* EFEK 3D UTAMA */
+    transform-style: preserve-3d; /* Supaya isinya bisa keluar */
+    transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
-.skill-card:hover {
-    transform: translateY(-10px);
-    
+/* --- ISI KARTU (ICON, JUDUL, TEKS) --- */
 
-    background: rgba(168, 85, 247, 0.1); 
+/* 1. Kotak Icon */
+.icon-box {
+    font-size: 3rem;
+    margin-bottom: 20px;
     
+    /* Warna Gradient Icon */
+    background: linear-gradient(135deg, #ff5acd, #a855f7);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
     
-    border-color: #a855f7;
+    /* Icon melayang jauh ke depan (50px) */
+    transform: translateZ(50px);
+    transition: all 0.5s ease;
+    filter: drop-shadow(0 0 15px rgba(168, 85, 247, 0.5));
+}
+
+/* 2. Judul (Teamwork, dll) */
+.skill-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: white;
     
-    box-shadow: 0 0 20px rgba(168, 85, 247, 0.4); 
+    /* Judul melayang sedang (30px) */
+    transform: translateZ(30px);
+}
+
+/* 3. Deskripsi */
+.skill-card p {
+    font-size: 0.95rem;
+    color: #aaa;
+    line-height: 1.6;
+    
+    /* Teks melayang tipis (20px) */
+    transform: translateZ(20px);
+}
+
+/* --- SAAT DI-HOVER (DISENTUH MOUSE) --- */
+
+.skill-card:hover {
+    /* Kartu miring ke atas & sedikit membesar */
+    transform: rotateX(-10deg) rotateY(5deg) scale(1.05);
+    
+    /* Border jadi menyala Ungu */
+    border-color: rgba(168, 85, 247, 0.5);
+    background: rgba(30, 30, 30, 0.8);
+    
+    /* Bayangan makin dalam */
+    box-shadow: 
+        0 20px 40px rgba(0,0,0,0.7),
+        0 0 20px rgba(168, 85, 247, 0.2); /* Glow tipis */
+}
+
+/* Saat hover, icon makin bersinar */
+.skill-card:hover .icon-box {
+    transform: translateZ(80px) scale(1.1); /* Maju makin jauh */
+    filter: drop-shadow(0 0 25px rgba(255, 90, 205, 0.8));
 }
 #cursor-glow {
     position: fixed;
@@ -305,5 +347,368 @@ spline-viewer {
     
     .btn-outline {
         margin-left: 0;
+    }
+}
+/* =========================================
+   TECH STACK 3D (HOLOGRAM STYLE)
+   ========================================= */
+.tech-section {
+    padding: 50px 5% 100px;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+    
+    /* STAGE 3D: Memberikan ruang perspektif */
+    perspective: 1000px; 
+}
+
+.tech-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px; /* Jarak diperlebar biar efek 3D lega */
+    margin-top: 50px;
+    
+    /* Agar elemen anak bisa tembus dimensi Z */
+    transform-style: preserve-3d;
+}
+
+.tech-card {
+    /* Ukuran Kartu */
+    width: 120px;
+    height: 140px;
+    
+    /* Kaca Transparan */
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    
+    /* Posisi & Layout */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    /* EFEK 3D PENTING */
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Mentul-mentul halus */
+    transform-style: preserve-3d; /* Agar icon bisa keluar dari kartu */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5); /* Bayangan lantai */
+}
+
+/* Icon (FontAwesome) */
+.tech-card i {
+    font-size: 3.5rem;
+    color: #555; /* Warna mati sebelum hover */
+    transition: all 0.4s ease;
+    
+    /* EFEK POP-OUT: Icon maju 20px ke depan */
+    transform: translateZ(20px); 
+}
+
+/* Teks nama (HTML, CSS, dll) */
+.tech-card p {
+    margin-top: 15px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #888;
+    
+    /* EFEK POP-OUT: Teks maju 10px ke depan */
+    transform: translateZ(10px);
+}
+
+/* --- SAAT MOUSE DIARAHKAN (HOVER) --- */
+
+.tech-card:hover {
+    /* Kartu miring ke atas & Zoom sedikit */
+    transform: rotateX(-10deg) translateY(-10px);
+    
+    /* Kaca jadi lebih terang */
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+    
+    /* Bayangan makin jauh (efek melayang tinggi) */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+}
+
+/* Icon & Teks saat hover jadi Putih Bersih */
+.tech-card:hover p { color: white; }
+
+/* WARNA 3D NEON PER ICON */
+
+/* 1. HTML (Oranye) */
+.tech-card:hover .html-icon {
+    color: #ff5722;
+    /* Efek Bayangan Neon 3D */
+    filter: drop-shadow(0 0 15px #ff5722); 
+    transform: translateZ(50px) scale(1.1); /* Keluar jauh 50px dari layar */
+}
+
+/* 2. CSS (Biru) */
+.tech-card:hover .css-icon {
+    color: #2196f3;
+    filter: drop-shadow(0 0 15px #2196f3);
+    transform: translateZ(50px) scale(1.1);
+}
+
+/* 3. JS (Kuning) */
+.tech-card:hover .js-icon {
+    color: #f7df1e;
+    filter: drop-shadow(0 0 15px #f7df1e);
+    transform: translateZ(50px) scale(1.1);
+}
+
+/* 4. Git (Merah Bata) */
+.tech-card:hover .git-icon {
+    color: #f44336;
+    filter: drop-shadow(0 0 15px #f44336);
+    transform: translateZ(50px) scale(1.1);
+}
+
+/* 5. Github (Putih/Ungu) */
+.tech-card:hover .github-icon {
+    color: #ffffff;
+    filter: drop-shadow(0 0 15px #ffffff);
+    transform: translateZ(50px) scale(1.1);
+}
+.tech-card:hover .python-icon {
+    color: #306998;
+    filter: drop-shadow(0 0 15px #306998);
+    transform: translateZ(50px) scale(1.1);
+}
+/* =========================================
+   INTRO SCREEN (PEMBUKA)
+   ========================================= */
+#intro-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh; /* Full Layar */
+    
+    background-color: #000000; /* Hitam pekat */
+    z-index: 9999; /* Pastikan di atas segalanya (Navbar/Robot) */
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    /* Transisi Tirai Naik ke Atas */
+    transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+/* Tulisan di tengah */
+/* =========================================
+   INTRO TEXT (STATIC LUXURY GRADIENT)
+   ========================================= */
+.intro-text {
+    /* Font & Ukuran */
+    font-size: 2.5rem; /* Sedikit lebih besar biar gagah */
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 800;
+    text-align: center; /* Rata tengah */
+    padding: 0 20px;    /* Biar gak mepet pinggir di HP */
+    
+    /* --- WARNA MEWAH (TETAP DIPAKAI) --- */
+    background: linear-gradient(90deg, #ff5acd 0%, #a855f7 50%, #5b21b6 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent; 
+    
+    /* Efek Glow */
+    filter: drop-shadow(0 0 10px rgba(217, 70, 239, 0.6)) 
+            drop-shadow(0 0 20px rgba(168, 85, 247, 0.4));
+    
+    /* --- ANIMASI --- */
+    /* Hapus typing, ganti jadi muncul pelan-pelan (Fade In) biar sopan */
+    opacity: 0;
+    animation: textFadeIn 1.5s ease forwards;
+}
+
+/* Animasi Muncul Halus */
+@keyframes textFadeIn {
+    0% { 
+        opacity: 0; 
+        transform: translateY(20px); /* Muncul dari agak bawah */
+    }
+    100% { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+/* Hapus @keyframes typing dan blink-caret yang lama, sudah tidak dipakai */
+
+/* Responsive HP */
+@media (max-width: 768px) {
+    .intro-text {
+        font-size: 1.5rem; /* Ukuran pas di HP */
+    }
+}
+/* =========================================
+   INTRO SCREEN (FULL PACK)
+   ========================================= */
+
+/* 1. KOTAK HITAM (TIRAI) */
+#intro-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 9999;
+    
+    display: flex;
+    flex-direction: column; /* Susun atas-bawah */
+    justify-content: center;
+    align-items: center;
+    
+    transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+    
+    /* --- BACKGROUND 2D CYBER GRID (BARU) --- */
+    background-color: #050505; /* Dasar Hitam */
+    
+    /* Membuat garis kotak-kotak tipis */
+    background-image: 
+        linear-gradient(rgba(168, 85, 247, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(168, 85, 247, 0.1) 1px, transparent 1px);
+    
+    /* Ukuran kotak-kotaknya 50px x 50px */
+    background-size: 50px 50px;
+    
+    /* Efek Vignette: Pinggirnya gelap, tengahnya terang (Biar fokus ke teks) */
+    mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+    -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+}
+
+
+/* 2. CLASS PENGGERAK (JANGAN DIHAPUS) */
+/* Class ini ditambahkan oleh Javascript setelah 2.5 detik */
+.slide-up {
+    transform: translateY(-100%); /* Angkat tirai ke atas */
+}
+
+/* 3. TEKS MEWAH (STATIC / DIAM) */
+.intro-text {
+    /* Font & Ukuran */
+    font-size: 2.5rem;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 800;
+    text-align: center;
+    padding: 0 20px;
+    
+    /* Warna Mewah Gradient */
+    background: linear-gradient(90deg, #ff5acd 0%, #a855f7 50%, #5b21b6 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent; 
+    
+    /* Efek Glow */
+    filter: drop-shadow(0 0 10px rgba(217, 70, 239, 0.6)) 
+            drop-shadow(0 0 20px rgba(168, 85, 247, 0.4));
+    
+    /* Animasi Muncul Pelan (Fade In) */
+    opacity: 0;
+    animation: textFadeIn 1.5s ease forwards;
+}
+
+/* Keyframes untuk muncul pelan */
+@keyframes textFadeIn {
+    0% { 
+        opacity: 0; 
+        transform: translateY(20px); 
+    }
+    100% { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+/* Responsive HP */
+@media (max-width: 768px) {
+    .intro-text {
+        font-size: 1.5rem;
+    }
+}
+/* =========================================
+   TOMBOL MULAI (START BUTTON)
+   ========================================= */
+/* =========================================
+   TOMBOL MULAI (CYBER STYLE)
+   ========================================= */
+#start-btn {
+    margin-top: 50px;
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    font-family: 'Segoe UI', sans-serif; /* Font modern */
+    font-weight: 700;
+    text-transform: uppercase; /* Huruf besar semua biar tegas */
+    letter-spacing: 2px;
+    
+    /* Warna Dasar: Transparan dengan Border Neon */
+    color: #ff5acd; /* Pink Neon */
+    background: transparent;
+    border: 2px solid #ff5acd;
+    border-radius: 50px;
+    
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    
+    /* Animasi Denyut (Pulse) biar tombolnya 'Hidup' */
+    box-shadow: 0 0 10px rgba(255, 90, 205, 0.3);
+    animation: btnPulse 2s infinite;
+    
+    /* Animasi Muncul Awal */
+    opacity: 0;
+    animation: btnFadeIn 1s ease forwards 0.5s, btnPulse 2s infinite 1s;
+}
+
+/* Icon Roket di dalam tombol */
+#start-btn i {
+    margin-left: 10px;
+    transition: transform 0.4s ease;
+}
+
+/* --- EFEK HOVER (SAAT DISENTUH) --- */
+#start-btn:hover {
+    /* Tukar Warna: Jadi Pink Penuh */
+    background: #ff5acd;
+    color: white;
+    
+    /* Glow Super Terang */
+    box-shadow: 
+        0 0 20px #ff5acd,
+        0 0 40px #ff5acd,
+        0 0 80px #ff5acd;
+        
+    /* Sedikit Membesar */
+    transform: scale(1.05);
+    border-color: transparent;
+}
+
+/* Roketnya terbang pas di-hover */
+#start-btn:hover i {
+    transform: translateX(5px) translateY(-5px) rotate(45deg);
+}
+
+/* --- KEYFRAMES (ANIMASI) --- */
+
+/* Animasi Muncul */
+@keyframes btnFadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Animasi Denyut Jantung (Pulse) */
+@keyframes btnPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 90, 205, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(255, 90, 205, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 90, 205, 0);
     }
 }
