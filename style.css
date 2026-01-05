@@ -221,7 +221,15 @@ body {
     box-shadow: 0 0 15px #a855f7;
 }
 
-.hero-visual { width: 45%; height: 500px; z-index: 1; }
+.hero-visual {
+    width: 50%;       
+    height: 600px;    
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 /* =========================================
    5. SOFT SKILLS (KARTU BESAR & ICON 3D FIX)
@@ -391,9 +399,6 @@ body {
 .tech-card:hover .github-icon { color: #ffffff; filter: drop-shadow(0 0 15px #ffffff); transform: translateZ(50px) scale(1.1); }
 .tech-card:hover .python-icon { color: #3776ab; filter: drop-shadow(0 0 15px #3776ab); transform: translateZ(50px) scale(1.1); }
 
-/* =========================================
-   7. EXTRAS & MOBILE FIX
-   ========================================= */
 #cursor-glow {
     position: fixed;
     width: 300px;
@@ -437,6 +442,5 @@ body {
     @keyframes mobileFloat {
         0%, 100% { transform: translateY(0); box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
         50% { transform: translateY(-10px); border-color: #a855f7; }
-        
     }
 }
